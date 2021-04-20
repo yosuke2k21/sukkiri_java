@@ -1,26 +1,19 @@
+interface Func1 {
+  boolean call(int x);
+}
+
+interface Func2 {
+  String call(boolean male, String name);
+}
+
 public class Main {
-  public static boolean isOdd(int x) {
-    return x % 2 == 1;
-  }
-  
-  public static String addNamePrefix(boolean male, String name) {
-    if (male == true) { return "Mr." + name; }
-    else { return "Ms." + name; }
-  }
-  
   public static void main(String[] args) {
-    // Func1 p1 = Main::isOdd;
-    // boolean b = p1.test1(2);
-    // System.out.println(b);
-    // 
-    // Func2 p2 = Main::addNamePrefix;
-    // String s = p2.addNamePrefix(true, "yosuke");
-    // System.out.println(s);
+    FuncList func = new FuncList();
     
-    Func1 f1 = x -> x % 2 == 1;
-    Func2 f2 = (male, name) -> { 
-      if (male == true) { return "Mr." + name; }
-      else { return "Ms." + name; }
-    };
-  }
+    Func1 f1 = FuncList::isOdd;
+    Func2 f2 = func::addNamePrefix;
+    
+    System.out.println(f1.call(5));
+    System.out.println(f2.call(true, "yosuke"));
+    }
 }
